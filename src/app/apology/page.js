@@ -10,9 +10,19 @@ export default function ApologyPage() {
 
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
+
   const handleForgive = () => {
     setForgiven(true);
+    sendWhatsAppMessage();
     setModalOpen(false);
+  };
+
+  const sendWhatsAppMessage = () => {
+    const waNumber = "6285886149964"; // Ganti dengan nomor WhatsApp kamu
+    const message = encodeURIComponent(
+      "Iya sayang aku maafin, jangan diulangin lagi yah lain kali <3"
+    );
+    window.open(`https://wa.me/${waNumber}?text=${message}`, "_blank");
   };
 
   return (
