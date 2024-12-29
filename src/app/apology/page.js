@@ -3,10 +3,12 @@
 import { useState } from "react";
 import Modal from "@/components/Modal";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export default function ApologyPage() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isForgiven, setForgiven] = useState(false);
+  const router = useRouter();
 
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
@@ -15,6 +17,10 @@ export default function ApologyPage() {
     setForgiven(true);
     sendWhatsAppMessage();
     setModalOpen(false);
+  };
+
+  const handleNotForgive = () => {
+    router.push("/not-forgiven"); // Arahkan ke halaman lain
   };
 
   const sendWhatsAppMessage = () => {
@@ -53,19 +59,31 @@ export default function ApologyPage() {
         Maafin Aku?
       </motion.button>
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onForgive={handleForgive}
-      >
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         {!isForgiven ? (
           <>
             <h2 className="text-lg font-bold text-gray-800">
-              Terima Kasih! ❤️
+              Maafin Aku Ya? 🙏
             </h2>
             <p className="mt-2 text-gray-600">
-              Aku bener-bener janji nggak bakal ulangin kesalahan ini lagi.
+              Aku sadar banget kalau aku salah. Tolong maafin aku, ya.
             </p>
+            <div className="mt-4 flex justify-center space-x-3">
+              {/* Tombol Aku Maafin Kamu */}
+              <button
+                className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                onClick={handleForgive}
+              >
+                Aku Maafin Kamu
+              </button>
+              {/* Tombol Nggak Dulu */}
+              <button
+                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400"
+                onClick={handleNotForgive}
+              >
+                Nggak Dulu
+              </button>
+            </div>
           </>
         ) : (
           <>

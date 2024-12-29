@@ -14,20 +14,6 @@ export default function Modal({ isOpen, onClose, onForgive, children }) {
         exit={{ opacity: 0, scale: 0.9 }}
       >
         {children}
-        <div className="mt-4 flex justify-between gap-4">
-          <button
-            className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
-            onClick={onForgive}
-          >
-            Aku Maafin Kamu ❤️
-          </button>
-          <button
-            className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
-            onClick={onClose}
-          >
-            Nanti Dulu
-          </button>
-        </div>
       </motion.div>
     </div>
   );
