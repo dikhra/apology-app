@@ -1,8 +1,15 @@
 "use client";
 
+import { useState } from "react";
+import Modal from "@/components/Modal";
 import { motion } from "framer-motion";
 
 export default function ApologyPage() {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
+
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 px-4 sm:px-8">
       <motion.h1
@@ -26,10 +33,17 @@ export default function ApologyPage() {
         className="mt-8 px-6 py-2 sm:px-8 sm:py-3 bg-green-500 text-white text-sm sm:text-lg rounded-lg shadow-md hover:bg-green-600 transition"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => alert("Makasih udah mau maafin aku 😢❤️")}
+        onClick={handleOpenModal}
       >
         Maafin Aku?
       </motion.button>
+
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <h2 className="text-lg font-bold text-gray-800">Terima Kasih! ❤️</h2>
+        <p className="mt-2 text-gray-600">
+          Aku bener-bener janji nggak bakal ulangin kesalahan ini lagi.
+        </p>
+      </Modal>
     </main>
   );
 }
